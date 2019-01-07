@@ -45,7 +45,7 @@ public class RestaurantApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getOrders() {
+    public Response getRestaurants() {
         return Response.ok(restaurantBean.getRestaurants()).build();
     }
 
