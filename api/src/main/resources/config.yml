@@ -26,9 +26,6 @@ kumuluzee:
                               <Root level="all">
                                   <AppenderRef ref="logstash" level="trace"/>
                               </Root>
-                              <AsyncLogger name="si.fri.rso.projekt.order.api.v1.resources.RestaurantApi" level="trace" additivity="false" includeLocation="true">
-                                <AppenderRef ref="logstash"/>
-                              </AsyncLogger>
                           </Loggers>
                       </Configuration>'
 app-properties:
