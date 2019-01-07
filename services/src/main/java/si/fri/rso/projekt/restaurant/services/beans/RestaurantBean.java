@@ -16,6 +16,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -55,50 +56,10 @@ public class RestaurantBean {
         appProperties.setExternalServicesEnabled(config);
     }
 
-
-    //private List<Buyer> getObjects(String json) throws IOException {
-    //    return json == null ? new ArrayList<>() : objectMapper.readValue(json,
-    //            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).getTypeFactory().constructCollectionType(List.class, Buyer.class));
-    //}
-    /*public List<Buyer> getMessageDiscovery(){
-        if(url.isPresent()) {
-            try {
-                return httpClient
-                        .target(url.get() + "/v1/buyers")
-                        .request(MediaType.APPLICATION_JSON)
-                        .get(new GenericType<List<Buyer>>() {
-                        });
-            }
-            catch (WebApplicationException | ProcessingException e) {
-                System.out.println("errror: " + url.get() + "\t " + e.getMessage());
-                //throw new InternalServerErrorException(e.getMessage());
-                return null;
-            }
-        }
-        return null;
-    }*/
-
-
-    public String getMessageDiscovery2(){
-        if(containerUrl.isPresent()) {
-            try {
-                return httpClient
-                        .target(containerUrl.get() + "/v1/buyers/test")
-                        .request()
-                        .get(String.class);
-            }
-            catch (WebApplicationException | ProcessingException e) {
-                System.out.println("errror: " + containerUrl.get() + "\t " + e.getMessage());
-                return "Sth went wrong!";
-            }
-        }
-        System.out.println("errror: sth went wring!");
-        return "Sth went wrong!";
-    }
-
     public List<Restaurant> getRestaurants() {
         MongoRestaurant mb = new MongoRestaurant();
 
+        log.logp(Level.INFO, "RestaurantBean", "getRestaurants()", "getRestaurant call");
         return mb.getAllRestaurant();
     }
 
