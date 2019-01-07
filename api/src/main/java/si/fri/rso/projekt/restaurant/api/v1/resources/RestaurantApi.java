@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response;
 
 @RequestScoped
 @Path("restaurants")
-@Log
 public class RestaurantApi {
 
     @Inject
@@ -44,12 +43,14 @@ public class RestaurantApi {
 
 
     @GET
+    @Log
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRestaurants() {
         return Response.ok(restaurantBean.getRestaurants()).build();
     }
 
     @GET
+    @Log
     @Path("/{restaurantID}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRestaurantByID(@PathParam("restaurantID") Integer restaurantID) {
