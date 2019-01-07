@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @RequestScoped
-@Path("restaurant")
+@Path("restaurants")
 @Log
 public class RestaurantApi {
 
@@ -52,7 +52,7 @@ public class RestaurantApi {
     @GET
     @Path("/{restaurantID}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getOrdersbyID(@PathParam("restaurantID") Integer restaurantID) {
+    public Response getRestaurantByID(@PathParam("restaurantID") Integer restaurantID) {
         Restaurant queue = restaurantBean.getRestaurants(restaurantID);
 
         if(queue != null) {
