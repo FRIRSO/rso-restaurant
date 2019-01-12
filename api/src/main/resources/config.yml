@@ -17,6 +17,7 @@ kumuluzee:
     web-instrumentation:
     - name: restaurants-service
       url-pattern: /v1/restaurants/service
+      status-codes: "200, 500"
     - name: restaurants-endpoint
       url-pattern: /v1/restaurants/
   logs:
