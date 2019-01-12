@@ -13,6 +13,12 @@ kumuluzee:
   discovery:
     etcd:
       hosts: http://etcd:2379
+  metrics:
+    web-instrumentation:
+    - name: restaurants-service
+      url-pattern: /v1/restaurants/service
+    - name: restaurants-endpoint
+      url-pattern: /v1/restaurants/
   logs:
     config-file:  '<?xml version="1.0" encoding="UTF-8"?>
                       <Configuration name="restaurant">

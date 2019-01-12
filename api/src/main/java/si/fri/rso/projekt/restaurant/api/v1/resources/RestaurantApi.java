@@ -2,6 +2,9 @@ package si.fri.rso.projekt.restaurant.api.v1.resources;
 
 
 import com.kumuluz.ee.logs.cdi.Log;
+import org.eclipse.microprofile.metrics.Counter;
+import org.eclipse.microprofile.metrics.annotation.Metric;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import si.fri.rso.projekt.restaurant.models.Restaurant;
 import si.fri.rso.projekt.restaurant.services.beans.RestaurantBean;
 
@@ -18,10 +21,15 @@ public class RestaurantApi {
     @Inject
     private RestaurantBean restaurantBean;
 
+    @Inject
+    @Metric(name = "service_counter")
+    private Counter counter;
+
 
     @GET
     @Path("service")
     public Response service() {
+        counter.inc();
         return Response.status(Response.Status.OK).entity(restaurantBean.readConfig()).build();
     }
 
@@ -44,6 +52,7 @@ public class RestaurantApi {
 
     @GET
     @Log
+    @Timed(name = "get_restaurants_timer")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getRestaurants() {
         return Response.ok(restaurantBean.getRestaurants()).build();
